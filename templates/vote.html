@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vote</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .candidate-option {
+            display: block;
+            margin: 10px auto;
+            padding: 15px;
+            width: 250px;
+            text-align: left;
+            background-color: #fff;
+            color: #333;
+            border: 2px solid #4a00e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .candidate-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body class="vote-page">
+    <div class="container">
+        <h1>🗳️ Cast Your Vote</h1>
+
+        <form method="POST">
+            <label class="candidate-option">
+                <input type="radio" name="candidate" value="Candidate A" required>
+                Candidate A
+            </label>
+
+            <label class="candidate-option">
+                <input type="radio" name="candidate" value="Candidate B">
+                Candidate B
+            </label>
+
+            <label class="candidate-option">
+                <input type="radio" name="candidate" value="Candidate C">
+                Candidate C
+            </label>
+
+            <br>
+            <button type="submit" class="button">Submit Vote</button>
+        </form>
+
+        <br>
+        <a href="/" class="button">🏠 Back to Home</a>
+        
+    </div>
+</body>
+</html>

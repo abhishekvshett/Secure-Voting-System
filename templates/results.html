@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voting Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        ul, table {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🗳️ Voting Results</h2>
+    
+    <!-- 🏆 Winner Announcement -->
+    {% if winner %}
+        {% if is_tie %}
+            <h3 style="color: orange;">⚖️ It's a tie between: {{ winner }}</h3>
+        {% else %}
+            <h3 style="color: green;">🏆 Winner: {{ winner }}</h3>
+        {% endif %}
+    {% else %}
+    <h3 style="color: gray;">No votes yet.</h3>
+    {% endif %}
+
+    <ul>
+      {% for result in results %}
+        <li><strong>{{ result._id }}</strong>: {{ result.count }} vote(s)</li>
+      {% endfor %}
+    </ul>
+
+    <h2>🕵️‍♂️ Voter Audit Log</h2>
+    <table>
+      <tr>
+        <th>Voter Email</th>
+        <th>Voted For</th>
+      </tr>
+      {% for vote in votes_list %}
+      <tr>
+        <td>{{ vote.voter }}</td>
+        <td>{{ vote.candidate }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <!-- 🔁 Reset System Button -->
+    <form method="POST" action="/reset_all" onsubmit="return confirmReset();">
+        <input type="hidden" name="admin_pass" value="2003">
+        <button type="submit">⚠️ Reset Entire System</button>
+    </form>
+
+    <script>
+        function confirmReset() {
+            return confirm("⚠️ Are you sure you want to delete ALL users and ALL votes? This cannot be undone!");
+        }
+    </script>
+
+</body>
+
+</html>

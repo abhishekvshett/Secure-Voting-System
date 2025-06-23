@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .form-group-inline {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group-inline label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .form-group-inline input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body class="register-page">
+    <div class="container">
+        <h1>📝 Register</h1>
+
+        <form action="/register" method="POST">
+            <div class="form-group-inline">
+                <label>Name:</label>
+                <input type="text" name="name" required>
+
+                <label>Email:</label>
+                <input type="email" name="email" required>
+
+                <label>Password:</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button type="submit" class="button">Register</button>
+        </form>
+
+        <br>
+        <a href="/" class="button">🏠 Back to Home</a>
+    </div>
+</body>
+</html>
