@@ -83,7 +83,7 @@ def vote():
 def results():
     if request.method == 'POST':
         admin_pass = request.form['admin_pass']
-        if admin_pass == '2003':  # 🔐 Replace with your real admin password
+        if admin_pass == 'your_password':  # 🔐 Replace with your real admin password
 
             # 📊 Aggregate vote counts (sorted descending)
             pipeline = [
@@ -123,7 +123,7 @@ def results():
 def reset_all():
     if request.method == 'POST':
         admin_pass = request.form.get('admin_pass')
-        if admin_pass == '2003':  # your admin password
+        if admin_pass == 'your_password':  # your admin password
             db.Users.delete_many({})
             db.Votes.delete_many({})
             return "✅ All users and votes have been reset. System is now clean and ready for new voting."
